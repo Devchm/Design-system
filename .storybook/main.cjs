@@ -11,8 +11,10 @@ module.exports = {
     builder: '@storybook/builder-vite'
   },
   features: {
-    storyStoreV7: true
+    storyStoreV7: true,
+    interactionsDebugger: true
   },
+  staticsDirs: ['../public'],
   viteFinal: (config, { configType }) => {
     if (configType == 'PRODUCTION') {
       config.base = '/Design-system/' //repositório
@@ -23,4 +25,3 @@ module.exports = {
 }
 
 //
-

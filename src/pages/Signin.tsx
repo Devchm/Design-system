@@ -7,12 +7,18 @@ import { Logo } from "../styles/Logo";
 import { Text } from "../components/Text"
 import { Lock } from "phosphor-react"
 import { FormEvent, useState } from "react";
+import axios from 'axios'
 
 export function SignIn() {
   const [ isUserSignedIn, setIsUserSignedIn] = useState(false)
 
-   function handleSignIn(event: FormEvent) {
+   async function handleSignIn(event: FormEvent) {
      event.preventDefault()
+
+     await axios.post('/sessions', {
+      email: 'hhh@gmail.com',
+      password: "1232"
+     })
 
      setIsUserSignedIn(true)
 
@@ -31,7 +37,8 @@ export function SignIn() {
 
     </header>
 
-    <form onSubmit={handleSingIN} className='flex flex-col items-stretch w-full max-w-[400px] mt-10 gap-4'>
+    <form onSubmit={handleSignIn} className='flex flex-col items-stretch w-full max-w-[400px] mt-10 gap-4'>
+      { isUserSignedIn && <Text>Login Realizado!</Text>}
       <label htmlFor="email" className='flex flex-col gap-3'>
         <Text>Enderço de email</Text>
         <TextInput.Root>
